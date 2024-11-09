@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:51:23 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/06 18:02:14 by shattori         ###   ########.fr       */
+/*   Updated: 2024/11/07 21:33:16 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char	*str;
-	size_t	i;
+	const unsigned char	*str;
+	size_t				i;
 
-	str = (char *)s;
+	str = (const unsigned char *)s;
 	i = 0;
 	while (i < n)
 	{

@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:51:38 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/06 18:07:28 by shattori         ###   ########.fr       */
+/*   Updated: 2024/11/07 21:46:36 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	size_t	max_copy;
 	size_t	i;
 
-	dest_len = ft_strlen(dest);
 	src_len = ft_strlen(src);
-	dest_len = ft_strlen(dest);
 	if (size == 0)
 	{
 		return (src_len);
 	}
+	dest_len = ft_strlen(dest);
 	if (dest_len >= size)
 	{
 		return (size + src_len);

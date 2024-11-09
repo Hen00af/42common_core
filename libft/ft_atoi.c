@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 17:27:09 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/06 18:09:38 by shattori         ###   ########.fr       */
+/*   Updated: 2024/11/09 16:17:13 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	ft_atoi(const char *str)
 	long	nbr;
 	int		neg;
 
-	if (!str)
-		return (0);
 	nbr = 0;
 	i = 0;
 	neg = 0;

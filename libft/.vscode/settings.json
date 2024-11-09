@@ -1,8 +1,0 @@
-{
-	"files.associations": {
-		"ft_isascii.c": "cpp",
-		"ft_toupper.c": "cpp",
-		"ft_strchr.c": "cpp",
-		"ft_strnstr.c": "cpp"
-	}
-}
