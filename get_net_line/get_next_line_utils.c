@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 13:51:45 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/11 00:32:52 by shattori         ###   ########.fr       */
+/*   Created: 2024/11/11 00:42:56 by shattori          #+#    #+#             */
+/*   Updated: 2024/11/11 00:53:51 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_strncmp(const char *string1, const char *string2, size_t count)
+void	ft_putstr_fd(char *s, int fd)
 {
-	size_t	s;
-
-	s = 0;
-	while (s < count)
+	while (*s)
 	{
-		if (!string1[s] && !string2[s])
-		{
-			return ((unsigned char)string1[s] - (unsigned char)string2[s]);
-		}
-		if ((int)((string1[s] != string2[s])))
-		{
-			return ((unsigned char)string1[s] - (unsigned char)string2[s]);
-		}
+		ft_putchar_fd(*s, fd);
 		s++;
 	}
-	return (0);
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
 }

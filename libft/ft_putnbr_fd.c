@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:35:48 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/09 17:24:11 by shattori         ###   ########.fr       */
+/*   Updated: 2024/11/11 00:31:56 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	if (n >= 10)
 		ft_putnbr_fd(n / 10, fd);
-	c = (n %= 10) + '0';
+	n %= 10;
+	c = n + '0';
 	write(fd, &c, 1);
 }

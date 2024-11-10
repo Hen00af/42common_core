@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 13:51:45 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/11 00:32:52 by shattori         ###   ########.fr       */
+/*   Created: 2024/11/11 00:43:46 by shattori          #+#    #+#             */
+/*   Updated: 2024/11/11 01:07:07 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef	GET_NEXT_LINE_H
+#define GET_NEXT_LINE_H
 
-int	ft_strncmp(const char *string1, const char *string2, size_t count)
-{
-	size_t	s;
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-	s = 0;
-	while (s < count)
-	{
-		if (!string1[s] && !string2[s])
-		{
-			return ((unsigned char)string1[s] - (unsigned char)string2[s]);
-		}
-		if ((int)((string1[s] != string2[s])))
-		{
-			return ((unsigned char)string1[s] - (unsigned char)string2[s]);
-		}
-		s++;
-	}
-	return (0);
-}
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+
+#endif /*GET_NEXT_LINE_H*/
