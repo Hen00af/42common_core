@@ -1,40 +1,52 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <stdio.h>
+#include <fcntl.h>
 #include <stdlib.h>
 
-int get_next_line(FILE *fd)
+// int get_next_line(FILE *fd)
+// {
+//     static char buf[BUFSIZ];
+//     static char* bufp;
+//     static int n = 0;
+
+//     if (n == 0)
+//     {
+//         n = fread(buf, 1, sizeof(buf), fd);
+//         bufp = buf;
+//     }
+//     return (n-- > 0) ? (unsigned char) *bufp++ : EOF;
+// }
+int ft_getc(int fd)
 {
-    static char buf[BUFSIZ];
-    static char* bufp;
     static int n = 0;
+    static char buf[BUFSIZ];
+    static char *bufp;
 
     if (n == 0)
     {
-        n = fread(buf, 1, sizeof(buf), fd);
+        n = read(fd, buf, sizeof(buf));
+        if (n <= 0)
+            return EOF; // End of file or read error
         bufp = buf;
     }
-    return (n-- > 0) ? (unsigned char) *bufp++ : EOF;
+    return (--n >= 0) ? (unsigned char)*bufp++ : EOF;
 }
 
-int main(void)
-{
-    FILE *fd;
+int main(void) {
+    int fd;
     int c;
 
-    fd = fopen("test.txt", "r");
-    if (fd == NULL) {
+fd = open("//wsl.localhost/Ubuntu/root/programming/42common_core/42common_core/42common_core/get_net_line/text.txt", O_RDONLY);
+
+    if (fd == -1) {
         perror("Error opening file");
         return 1;
     }
 
-    while (1) {
-        c = get_next_line(fd);
-        if (c == EOF)
-            break;
+    while ((c = ft_getc(fd)) != EOF && c != '\n') {
         printf("%c", c);
     }
-
-    fclose(fd);
+    
+    close(fd);
     return 0;
 }
