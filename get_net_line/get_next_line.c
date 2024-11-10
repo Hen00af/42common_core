@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 00:52:47 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/11 05:50:29 by shattori         ###   ########.fr       */
+/*   Updated: 2024/11/11 07:23:14 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ char	*get_next_line(int fd)
 			break ;
 		ft_putchar(&ret, c);
 		if (c == '\n')
-		{
 			break ;
-		}
 	}
 	if (ret.len > 0)
 		ft_putchar(&ret, '\0');

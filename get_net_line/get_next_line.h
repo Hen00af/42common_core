@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 00:43:46 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/11 05:55:44 by shattori         ###   ########.fr       */
+/*   Updated: 2024/11/11 07:23:19 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_buff
 
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 int			ft_getchar(int fd);
-char		*ft_putchar(t_str *str, char c);
+int			ft_putchar(t_str *str, char c);
+char		*get_next_line(int fd);
 
 #endif /*GET_NEXT_LINE_H*/

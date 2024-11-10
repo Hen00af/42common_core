@@ -6,7 +6,7 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 02:51:47 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/11 05:54:17 by shattori         ###   ########.fr       */
+/*   Updated: 2024/11/11 07:23:09 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,41 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 int	ft_getchar(int fd)
 {
 	static t_buff	buf;
+	ssize_t			bytes_read;
 
 	if (buf.n == 0)
 	{
-		buf.n = read(fd, buf.buf, sizeof(buf));
+		bytes_read = read(fd, buf.buf, BUFSIZ);
+		if (bytes_read <= 0)
+			return (EOF);
+		buf.n = bytes_read;
 		buf.bufp = buf.buf;
 	}
-	return ((buf.n-- >= 0) ? (unsigned char)*buf.bufp++ : EOF);
+	buf.n--;
+	return ((unsigned char)*buf.bufp++);
 }
-
-char	*ft_putchar(t_str *str, char c)
+int	ft_putchar(t_str *str, char c)
 {
+	size_t	new_capa;
 	char	*new_str;
 
+	if (!str)
+		return (-1);
 	if (str->len + 1 > str->capa)
 	{
-		str->capa *= 2;
-		new_str = malloc(str->capa * sizeof(char));
+		new_capa = str->capa == 0 ? 1 : str->capa * 2;
+		new_str = malloc(new_capa * sizeof(char));
 		if (new_str == NULL)
-			return (NULL);
-		ft_memcpy(new_str, str->str, str->len);
-		free(str->str);
+			return (-1);
+		if (str->str != NULL)
+		{
+			ft_memcpy(new_str, str->str, str->len);
+			free(str->str);
+		}
 		str->str = new_str;
+		str->capa = new_capa;
 	}
 	str->str[str->len] = c;
 	str->len++;
-	str->str[str->len] = '\0';
 	return (0);
 }
