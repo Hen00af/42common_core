@@ -6,30 +6,32 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 15:41:26 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/06 18:09:53 by shattori         ###   ########.fr       */
+/*   Updated: 2024/11/13 21:10:35 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	word_count(const char *str, const char charset)
+int	word_count(const char *s, char c)
 {
 	int	count;
 	int	i;
-	int	in_words;
+	int	in_word;
 
-	in_words = 0;
 	count = 0;
 	i = 0;
-	while (str[i])
+	in_word = 0;
+	while (s[i])
 	{
-		if (str[i] != charset && in_words == 0)
+		if (s[i] != c && !in_word)
 		{
-			in_words = 1;
+			in_word = 1;
 			count++;
 		}
-		else if (str[i] == charset)
-			in_words = 0;
+		else if (s[i] == c)
+		{
+			in_word = 0;
+		}
 		i++;
 	}
 	return (count);
@@ -53,57 +55,46 @@ char	*ft_strndup(const char *src, int n)
 	return (dest);
 }
 
-void	memory_error(char **result, int count)
+void	free_result(char **result, int count)
 {
-	if (!result[count++])
-	{
-		while (--count >= 0)
-			free(result[count]);
-		free(result);
-	}
+	while (--count >= 0)
+		free(result[count]);
+	free(result);
 }
 
-void	split_words(char **result, const char *str, const char charset)
+char	**ft_split(char const *s, char c)
 {
-	int	start;
-	int	i;
-	int	count;
+	int		i;
+	int		start;
+	int		count;
+	char	**result;
 
-	start = -1;
+	if (!s)
+		return (NULL);
+	count = word_count(s, c);
+	result = (char **)malloc((count + 1) * sizeof(char *));
+	if (!result)
+		return (NULL);
 	i = 0;
+	start = -1;
 	count = 0;
-	while (str[i])
+	while (s[i])
 	{
-		if (str[i] != charset && start == -1)
+		if (s[i] != c && start == -1)
 			start = i;
-		else if ((str[i] == charset || str[i + 1] == '\0') && start != -1)
+		if ((s[i] == c || s[i + 1] == '\0') && start != -1)
 		{
-			result[count] = ft_strndup(str + start, i - start
-					+ (str[i] != charset));
-			if (!result[count++])
+			result[count] = ft_strndup(s + start, i - start + (s[i] != c));
+			if (!result[count])
 			{
-				memory_error(result, count);
+				free_result(result, count);
+				return (NULL);
 			}
+			count++;
 			start = -1;
 		}
 		i++;
 	}
 	result[count] = NULL;
-}
-
-char	**ft_split(char const *s, char c)
-{
-	int		cnt;
-	char	**result;
-
-	if (!s)
-		return (NULL);
-	cnt = word_count(s, c);
-	result = (char **)malloc((cnt + 1) * sizeof(char *));
-	if (!result)
-		return (NULL);
-	split_words(result, s, c);
-	if (result[cnt] != NULL)
-		result[cnt] = NULL;
 	return (result);
 }
