@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 00:43:46 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/22 02:26:32 by shattori         ###   ########.fr       */
+/*   Created: 2024/11/20 13:22:36 by shattori          #+#    #+#             */
+/*   Updated: 2024/11/22 02:19:00 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <fcntl.h>
 # include <limits.h>
@@ -47,4 +47,4 @@ int			ft_getchar(int fd);
 int			ft_putchar(t_str *str, char c);
 char		*get_next_line(int fd);
 
-#endif /*GET_NEXT_LINE_H*/
+#endif /* GET_NEXT_LINE_BONUS_H */

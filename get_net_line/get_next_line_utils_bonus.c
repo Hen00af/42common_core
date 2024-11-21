@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 03:24:06 by shattori          #+#    #+#             */
-/*   Updated: 2024/11/20 13:34:22 by shattori         ###   ########.fr       */
+/*   Created: 2024/11/11 02:51:47 by shattori          #+#    #+#             */
+/*   Updated: 2024/11/22 02:04:53 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
@@ -29,19 +29,19 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 int	ft_getchar(int fd)
 {
-	static t_buff	buf;
+	static t_buff	buf[FILENAME_MAX];
 	ssize_t			bytes_read;
 
-	if (buf.n == 0)
+	if (buf[fd].n == 0)
 	{
-		bytes_read = read(fd, buf.buf, BUFFER_SIZE);
+		bytes_read = read(fd, buf[fd].buf, BUFFER_SIZE);
 		if (bytes_read <= 0)
 			return (EOF);
-		buf.n = bytes_read;
-		buf.bufp = buf.buf;
+		buf[fd].n = bytes_read;
+		buf[fd].bufp = buf[fd].buf;
 	}
-	buf.n--;
-	return ((unsigned char)*buf.bufp++);
+	buf[fd].n--;
+	return ((unsigned char)*buf[fd].bufp++);
 }
 
 int	ft_putchar(t_str *str, char c)
